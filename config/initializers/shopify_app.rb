@@ -6,9 +6,12 @@ ShopifyApp.configure do |config|
   config.embedded_app = true
   config.after_authenticate_job = false
   config.session_repository = 'Shop'
-  config.webhooks = [
-    {topic: 'carts/update', address: 'https://user52.mocstage.com/webhooks/carts_update', format: 'json'},
-  ]
   config.after_authenticate_job = { job: Shopify::AfterAuthenticateJob, inline: true }
+  config.webhooks = [
+      {topic: 'products/create', address: 'https://user52.mocstage.com/webhooks/products_create', format: 'json'},
+      {topic: 'products/update', address: 'https://user52.mocstage.com/webhooks/products_update', format: 'json'},
+      {topic: 'products/delete', address: 'https://user52.mocstage.com/webhooks/products_delete', format: 'json'},
+  ]
 end
+
 
