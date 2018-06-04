@@ -5,7 +5,7 @@ ShopifyApp.configure do |config|
   config.scope = "read_orders, read_products"
   config.embedded_app = true
   config.after_authenticate_job = false
-  config.session_repository = Shop
+  config.session_repository = 'Shop'
   config.webhooks = [
     {topic: 'carts/update', address: 'https://user52.mocstage.com/webhooks/carts_update', format: 'json'},
   ]
