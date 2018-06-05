@@ -1,11 +1,10 @@
 module Sync
-  class SyncVariant
-    attr :product, :variants_ids, :shopify_variant_ids, :shopify_variant_collection
+  class Variant
+    attr_accessor :product, :variants_ids, :shopify_variants_ids, :shopify_variants_collection
 
-    def initialize(product, shopify_variant_collection)
-      @shopify_variant_collection = shopify_variant_collection
-      @product = product
-      @shopify_variant_ids = []
+    def initialize(args = {})
+      args.each { |k, v| send("#{k}=", v) }
+      @shopify_variants_ids = []
     end
 
     def sync
@@ -14,11 +13,18 @@ module Sync
 
     def update_variants
       @variants_ids = variant_shopify_ids
-      shopify_variant_collection.each do |shopify_variant|
-        @shopify_variant_ids.push shopify_variant.id.to_s
+      @shopify_variants_collection.each do |shopify_variant|
+        if variants_validation(shopify_variant)
+          shopify_variant = OpenStruct.new(shopify_variant)
+        end
+        @shopify_variants_ids.push shopify_variant.id.to_s
         update_variant(shopify_variant)
       end
       destroy_old_variants
+    end
+
+    def variants_validation(shopify_variant)
+      shopify_variant.is_a? Hash
     end
 
     def update_variant(shopify_variant)
@@ -36,9 +42,7 @@ module Sync
     end
 
     def old_variant_ids
-      variants_ids - shopify_variant_ids
+      variants_ids - shopify_variants_ids
     end
-
-
   end
 end

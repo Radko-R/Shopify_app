@@ -1,17 +1,27 @@
 module Sync
-  class SyncProduct
-    attr :shop, :products_ids, :shopify_product_ids
+  class Product
 
-    def initialize(shop)
-      @shop = shop
+    LIMIT = 3
+    FIELDS = ['id', 'handle', 'title', 'variants']
+    attr_accessor :shop, :products_ids, :shopify_product_ids, :webhook
+
+    def initialize(args = {})
+      args.each { |k, v| send("#{k}=", v) }
       @shopify_product_ids = []
     end
 
-    def sync
+    def sync_after_install
       activate_session
       update_products
       clear_session
     end
+
+    def sync_after_webhook
+      @webhook = OpenStruct.new(webhook)
+      update_product(webhook)
+    end
+
+
 
     def update_products
       @products_ids = product_shopify_ids
@@ -31,7 +41,7 @@ module Sync
     end
 
     def update_variants(product, shopify_variant_collection)
-      Sync::SyncVariant.new(product, shopify_variant_collection).sync
+      Sync::Variant.new(product: product, shopify_variants_collection: shopify_variant_collection).sync
     end
 
     def product_shopify_ids
@@ -39,7 +49,7 @@ module Sync
     end
 
     def shopify_product_collection
-      ShopifyAPI::Product.find(:all, params: {fields: ['id', 'handle', 'title', 'variants']})
+      ShopifyAPI::Product.find(:all, params: { limit: LIMIT, fields: FIELDS })
     end
 
     def destroy_old_products
@@ -56,6 +66,11 @@ module Sync
 
     def clear_session
       ShopifyAPI::Base.clear_session
+    end
+
+    def destroy_product(shopify_id)
+      product = shop.products.find_by(shopify_id: shopify_id)
+      product.destroy if product
     end
   end
 end
