@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b5208fd-5946-4bbf-b43c-2a1eef820f63" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/api/shop_api/base.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/shop_api/entities/product.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/shop_api/v1/products.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.generators" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.rakeTasks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my_shopify_app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sync/product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sync/product.rb" afterDir="false" />
-    </list>
+    <list default="true" id="2b5208fd-5946-4bbf-b43c-2a1eef820f63" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -95,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="products.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="products.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/api/shop_api/v1/products.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-278">
+            <state relative-caret-position="45">
               <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
@@ -113,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+            <state relative-caret-position="465">
+              <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -363,7 +344,7 @@
       <workItem from="1528126295950" duration="2199000" />
       <workItem from="1528128534398" duration="54000" />
       <workItem from="1528181551330" duration="25740000" />
-      <workItem from="1528264516538" duration="25864000" />
+      <workItem from="1528264516538" duration="26117000" />
     </task>
     <task id="LOCAL-00001" summary="Shopify API">
       <created>1527866785476</created>
@@ -393,22 +374,30 @@
       <option name="project" value="LOCAL" />
       <updated>1528214214136</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Grape and GrapeEntity for products.">
+      <created>1528292682851</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1528292682851</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126694000" />
+    <option name="totallyTimeSpent" value="126947000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008095" side_tool="true" weight="0.35661376" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4991905" visible="true" weight="0.2867725" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20021586" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4991905" visible="true" weight="0.2888889" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20021586" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32973558" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32910052" />
@@ -432,7 +421,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Shopify API" />
     <MESSAGE value="Product.rb and Variant.rb" />
-    <option name="LAST_COMMIT_MESSAGE" value="Product.rb and Variant.rb" />
+    <MESSAGE value="Grape and GrapeEntity for products." />
+    <option name="LAST_COMMIT_MESSAGE" value="Grape and GrapeEntity for products." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/config/application.rb">
@@ -725,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/api/shop_api/v1/products.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-278">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -741,8 +724,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+        <state relative-caret-position="465">
+          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/api/shop_api/v1/products.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
