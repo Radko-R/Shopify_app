@@ -13,10 +13,13 @@ module MyShopifyApp
     config.web_console.whitelisted_ips = '192.168.0.6'
     config.active_job.queue_adapter = :sidekiq
     config.autoload_paths += %W(#{config.root}/lib/)
-
+    config.paths.add File.join('app', 'shop_api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'shop_api', '*')]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
 end
+
+

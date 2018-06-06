@@ -63,3 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'shopify_app'
 gem 'redis'
 gem 'sidekiq'
+gem 'grape'
+gem 'grape_on_rails_routes' # rake task to expose grape api routes
+gem 'grape-entity'
+

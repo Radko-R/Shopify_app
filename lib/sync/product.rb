@@ -22,15 +22,21 @@ module Sync
     end
 
 
-
     def update_products
       @products_ids = product_shopify_ids
-      shopify_product_collection.each do |shopify_product|
+      update_products_page
+      destroy_old_products
+    end
+
+    def update_products_page(page = 0)
+      received_products = shopify_product_collection(page)
+      received_products.each do |shopify_product|
         @shopify_product_ids.push shopify_product.id.to_s
         update_product(shopify_product)
       end
-      destroy_old_products
+      update_products_page(page + 1) if received_products.count == LIMIT
     end
+
 
     def update_product(shopify_product)
       product = shop.products.find_or_initialize_by(shopify_id: shopify_product.id)
@@ -48,8 +54,8 @@ module Sync
       shop.products.map(&:shopify_id)
     end
 
-    def shopify_product_collection
-      ShopifyAPI::Product.find(:all, params: { limit: LIMIT, fields: FIELDS })
+    def shopify_product_collection(page)
+      ShopifyAPI::Product.find(:all, params: { page: page, limit: LIMIT, fields: FIELDS })
     end
 
     def destroy_old_products
