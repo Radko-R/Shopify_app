@@ -5,6 +5,7 @@ module ShopApi
       version 'v1', using: :path
       format :json
       prefix :api
+
       resource :products do
         desc 'Return list of products'
         get do
@@ -16,9 +17,9 @@ module ShopApi
         params do
           requires :id, type: String, desc: 'ID of the product'
         end
-        get ':id', root: 'product' do
+        get ':id' do
           product = Product.where(id: params[:id]).first!
-          present product
+          present product, with: ShopApi::Entities::Product
         end
 
         desc 'Create a product'
@@ -29,7 +30,7 @@ module ShopApi
         end
         put do
           product = Product.create({handle:params[:handle], title:params[:title], shop_id:params[:shop_id]})
-          present product
+          present product, with: ShopApi::Entities::Product
         end
 
         desc 'Update a product'
@@ -39,8 +40,12 @@ module ShopApi
           requires :title, type: String
         end
         post ':id' do
-          product = Product.find(params[:id]).update({handle:params[:handle], title:params[:title]})
-          present product
+          product = Product.find_by(id: params[:id])
+          return present status: false unless product
+          product.handle = params[:handle]
+          product.title = params[:title]
+          return present status: false unless product.save
+          present product, with: ShopApi::Entities::Product
         end
 
         desc 'Delete a product'
@@ -48,8 +53,8 @@ module ShopApi
           requires :id, type: String
         end
         delete ':id' do
-          product = Product.find(params[:id]).destroy!
-          present product
+          Product.find(params[:id]).destroy
+          present status: true
         end
       end
     end
