@@ -1,14 +1,14 @@
-class Shop < ActiveRecord::Base
+class Shop < ApplicationRecord
   include ShopifyApp::SessionStorage
 
-  has_many :products,  dependent: :destroy
+  has_many :products, dependent: :destroy
 
   def session
-    @session ||= self.class.session(self.shopify_domain, self.shopify_token)
+    @session ||= self.class.session(shopify_domain, shopify_token)
   end
 
   def activate_session
-    ShopifyAPI::Base.activate_session(self.session)
+    ShopifyAPI::Base.activate_session(session)
   end
 
   def self.session(domain, token)

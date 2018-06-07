@@ -3,8 +3,3 @@ module ShopApi
     mount ShopApi::V1::Products
   end
 end
-
-
-
-
-

@@ -19,6 +19,7 @@ module ShopApi
         end
         get ':id' do
           product = Product.where(id: params[:id]).first!
+          return error!("product can't be found") unless product
           present product, with: ShopApi::Entities::Product
         end
 
@@ -29,8 +30,12 @@ module ShopApi
           requires :shop_id, type: Integer
         end
         put do
-          product = Product.create({handle:params[:handle], title:params[:title], shop_id:params[:shop_id]})
-          present product, with: ShopApi::Entities::Product
+          product = Product.create(handle: params[:handle], title: params[:title], shop_id: params[:shop_id])
+          if product.save
+            present product, with: ShopApi::Entities::Product
+          else
+            error!("product can't be saved")
+          end
         end
 
         desc 'Update a product'
@@ -41,11 +46,16 @@ module ShopApi
         end
         post ':id' do
           product = Product.find_by(id: params[:id])
-          return present status: false unless product
-          product.handle = params[:handle]
-          product.title = params[:title]
-          return present status: false unless product.save
-          present product, with: ShopApi::Entities::Product
+          if product
+            product.update(handle: params[:handle], title: params[:title])
+            if product.update(handle: params[:handle], title: params[:title])
+              present product, with: ShopApi::Entities::Product
+            else
+              error!('product was not updated')
+            end
+          else
+            error!("product can't be found")
+          end
         end
 
         desc 'Delete a product'
@@ -53,7 +63,8 @@ module ShopApi
           requires :id, type: String
         end
         delete ':id' do
-          Product.find(params[:id]).destroy
+          product = Product.find_by(id: params[:id])
+          return  error!("product can't be destroy") unless product&.destroy
           present status: true
         end
       end

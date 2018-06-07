@@ -2,7 +2,7 @@ module Sync
   class Product
 
     LIMIT = 3
-    FIELDS = ['id', 'handle', 'title', 'variants']
+    FIELDS = %w[id handle title variants].freeze
     attr_accessor :shop, :products_ids, :shopify_product_ids, :webhook
 
     def initialize(args = {})
@@ -21,7 +21,6 @@ module Sync
       update_product(webhook)
     end
 
-
     def update_products
       @products_ids = product_shopify_ids
       update_products_page
@@ -36,7 +35,6 @@ module Sync
       end
       update_products_page(page + 1) if received_products.count == LIMIT
     end
-
 
     def update_product(shopify_product)
       product = shop.products.find_or_initialize_by(shopify_id: shopify_product.id)
@@ -76,7 +74,7 @@ module Sync
 
     def destroy_product(shopify_id)
       product = shop.products.find_by(shopify_id: shopify_id)
-      product.destroy if product
+      product&.destroy
     end
   end
 end

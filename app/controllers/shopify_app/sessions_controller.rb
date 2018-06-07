@@ -2,7 +2,7 @@ module ShopifyApp
   class SessionsController < ActionController::Base
     include ShopifyApp::LoginProtection
     layout false, only: :new
-    after_action only: [:new, :create] do |controller|
+    after_action only: %i[new create] do |controller|
       controller.response.headers.except!('X-Frame-Options')
     end
 
@@ -48,10 +48,8 @@ module ShopifyApp
 
     def login_shop
       sess = ShopifyAPI::Session.new(shop_name, token)
-
       request.session_options[:renew] = true
       session.delete(:_csrf_token)
-
       session[:shopify] = ShopifyApp::SessionRepository.store(sess)
       session[:shopify_domain] = shop_name
       session[:shopify_user] = associated_user if associated_user.present?
@@ -66,7 +64,7 @@ module ShopifyApp
     end
 
     def associated_user
-      return unless auth_hash['extra'].present?
+      return if auth_hash['extra'].blank?
       auth_hash['extra']['associated_user']
     end
 
@@ -107,7 +105,7 @@ module ShopifyApp
     end
 
     def return_address
-      session.delete(:return_to) || ShopifyApp::configuration.root_url
+      session.delete(:return_to) || ShopifyApp.configuration.root_url
     end
   end
 end

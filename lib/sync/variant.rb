@@ -14,9 +14,7 @@ module Sync
     def update_variants
       @variants_ids = variant_shopify_ids
       @shopify_variants_collection.each do |shopify_variant|
-        if variants_validation(shopify_variant)
-          shopify_variant = OpenStruct.new(shopify_variant)
-        end
+        shopify_variant = OpenStruct.new(shopify_variant) if variants_validation(shopify_variant)
         @shopify_variants_ids.push shopify_variant.id.to_s
         update_variant(shopify_variant)
       end
